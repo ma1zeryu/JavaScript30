@@ -24,3 +24,7 @@ else secondHand.style.transition = "all 0.05s";
 ```
 
 这里`setInterval`的方案并非每秒刷一次，只是间隔一秒扔进事件队列了，但这样才能实现那种跳动的效果，要是用`rAF`了就平滑了
+
+## CSS技巧
+
+伪元素`.clock-face::after`，用来绘制一些动画，比如表盘中的小圆点，用伪元素可以比米娜多一个DOM
