@@ -17,7 +17,7 @@ function togglePlay() {
 }
 
 function updateButton() {
-    const icon = this.paused ? '▶' : '❚❚';
+    const icon = this.paused ? '▶' : '❚❚'; //通过视频自身状态来判断图标是最稳的
     toggle.textContent = icon;
 }
 

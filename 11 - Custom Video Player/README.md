@@ -47,6 +47,14 @@ video.addEventListener("timeupdate", () => {
 });
 ```
 
+## 知识点
+
+- `video`对象的属性、方法和事件
+  - `paused`
+  - `play()`
+  - `pause()`
+  - `currentTime`
+
 ## hook是什么
 
 在一个事后插入一段你的逻辑，比如click时间后执行的代码就是一个hook
