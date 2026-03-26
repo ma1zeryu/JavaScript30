@@ -1,57 +1,87 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>JS Reference VS Copy</title>
-  <link rel="icon" href="https://fav.farm/🔥" />
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <title>JS Reference VS Copy</title>
+    <link rel="icon" href="https://fav.farm/🔥" />
+  </head>
+  <body>
+    <script>
+      // start with strings, numbers and booleans
+      let age = 100;
+      let age2 = age;
+      console.log(age, age2);
+      age = 200;
+      console.log(age, age2);
 
-  <script>
-    // start with strings, numbers and booleans
+      let name = "Wes";
+      let name2 = name;
+      console.log(name, name2);
+      name = "Wesly";
+      console.log(name, name2);
 
-    // Let's say we have an array
-    const players = ['Wes', 'Sarah', 'Ryan', 'Poppy'];
+      // Let's say we have an array
+      const players = ["Wes", "Sarah", "Ryan", "Poppy"];
 
-    // and we want to make a copy of it.
+      // and we want to make a copy of it.
+      const team = players; //这里是引用
+      console.log(players, team);
+      // You might think we can just do something like this:
+      team[3] = "Lux";
+      // however what happens when we update that array?
 
-    // You might think we can just do something like this:
+      // now here is the problem!
 
-    // however what happens when we update that array?
+      // oh no - we have edited the original array too!
 
-    // now here is the problem!
+      // Why? It's because that is an array reference, not an array copy. They both point to the same array!
 
-    // oh no - we have edited the original array too!
+      // So, how do we fix this? We take a copy instead!
+      // const team2 = players.slice(); //
 
-    // Why? It's because that is an array reference, not an array copy. They both point to the same array!
+      // one way
 
-    // So, how do we fix this? We take a copy instead!
+      // or create a new array and concat the old one in
+      // const team3 = [].concat(players);
+      // or use the new ES6 Spread
+      // const team4 = [...players];
+      // team4[3] = "hzzzz";
+      // console.log(team4, players);
 
-    // one way
+      // const team5 = Array.from(players);
+      // now when we update it, the original one isn't changed
 
-    // or create a new array and concat the old one in
+      // The same thing goes for objects, let's say we have a person object
 
-    // or use the new ES6 Spread
+      // with Objects
+      const person = {
+        name: "Wes Bos",
+        age: 80,
+      };
 
-    // now when we update it, the original one isn't changed
+      // and think we make a copy:
+      // const captain = person; //也只是引用
+      // captain.number = 99;
 
-    // The same thing goes for objects, let's say we have a person object
+      // how do we take a copy instead?
+      const cap2 = Object.assign({}, person, { number: 99 });
+      // We will hopefully soon see the object ...spread
+      const cap3 = { ...person, number: 99 }; //ES6确实舒服多了
+      // Things to note - this is only 1 level deep - both for Arrays and Objects. lodash has a cloneDeep method, but you should think twice before using it.
+      const wes = {
+        name: "Wes",
+        age: 100,
+        social: {
+          //如果修改到这一层就会和原本的对象一起被改了
+          twitter: "@wesbos",
+          fasebook: "wesbos.developer",
+        },
+      };
+      console.clear();
+      console.log(wes);
 
-    // with Objects
-    const person = {
-      name: 'Wes Bos',
-      age: 80
-    };
-
-    // and think we make a copy:
-
-    // how do we take a copy instead?
-
-    // We will hopefully soon see the object ...spread
-
-    // Things to note - this is only 1 level deep - both for Arrays and Objects. lodash has a cloneDeep method, but you should think twice before using it.
-
-  </script>
-
-</body>
+      const dev = { ...wes }; //所以这里的克隆只是第一层
+      const dev2 = JSON.parse(JSON.stringify(wes)); //深度复制方法
+    </script>
+  </body>
 </html>
