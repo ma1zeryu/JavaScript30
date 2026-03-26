@@ -229,7 +229,7 @@
         var timeout;
         return function () {
           //回调函数，以后每次执行的都是这个函数
-          var context = this, //保证this不变
+          var context = this, //保证this不变，指触发事件的dom元素，这里是window，因为setTimeout会丢this，中间出现了异步调用就需要警觉
             args = arguments; //保证参数不变
           var later = function () {
             timeout = null; //执行函数把timeout清掉
