@@ -9,6 +9,7 @@
    * 元素数量少（按钮、表单）
    * 结构稳定（不会动态变化）
    * 逻辑简单
+   - 把事件绑定在父节点上，然后`e.target`来确定具体点击对象
 2. localstorage
    - `localStorage.setItem()`
    - `localStorage.getItem()`
